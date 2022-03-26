@@ -12,3 +12,10 @@
 
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.6.1/g' package/base-files/files/bin/config_generate
+
+svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ngrokc package/luci-app-ngrokc
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/ngrokc package/ngrokc
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+
+./scripts/feeds update -a
+./scripts/feeds install -a
