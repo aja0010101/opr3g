@@ -17,3 +17,5 @@ mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.c
 # rm -rf target/linux/ath79/dts/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
 # wget https://am.sohaha.xyz/tp703/tiny-tp-link.mk -O target/linux/ath79/image/tiny-tp-link.mk
 # wget https://am.sohaha.xyz/tp703/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi -O target/linux/ath79/dts/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
+rm -rf ./feeds/packages/lang/golang
+svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
