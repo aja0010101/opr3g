@@ -20,8 +20,8 @@ mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.c
 # rm -rf ./feeds/packages/lang/golang
 # svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
 pushd feeds/packages/lang
-rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-21.02/lang/golang
+rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
 popd
 
 # ./scripts/feeds update -a
-./scripts/feeds install -a
+# ./scripts/feeds install -a
