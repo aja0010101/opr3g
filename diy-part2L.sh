@@ -19,9 +19,19 @@ mkdir -p files/etc/hotplug.d/block && curl -fsSL https://raw.githubusercontent.c
 # wget https://am.sohaha.xyz/tp703/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi -O target/linux/ath79/dts/ar9331_tplink_tl-wr703n_tl-mr10u.dtsi
 # rm -rf ./feeds/packages/lang/golang
 # svn export https://github.com/sbwml/packages_lang_golang/branches/19.x feeds/packages/lang/golang
+
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/mbedtls package/libs/mbedtls
+
+cp -rf $GITHUB_WORKSPACE/general/naiveproxy package/naiveproxy
+
 pushd feeds/packages/lang
 rm -rf golang && svn co https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
 popd
 
-# ./scripts/feeds update -a
-# ./scripts/feeds install -a
+find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
+
+rm -rf feeds/packages/lang/perl
+cp -rf $GITHUB_WORKSPACE/general/perl feeds/packages/lang
+
+./scripts/feeds update -a
+./scripts/feeds install -a
