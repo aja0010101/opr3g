@@ -30,8 +30,8 @@ popd
 
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/luci\.mk/include \$(TOPDIR)\/feeds\/luci\/luci\.mk/g' {}
 
-rm -rf feeds/packages/lang/perl
-cp -rf $GITHUB_WORKSPACE/general/perl feeds/packages/lang
+# rm -rf feeds/packages/lang/perl
+# cp -rf $GITHUB_WORKSPACE/general/perl feeds/packages/lang
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
